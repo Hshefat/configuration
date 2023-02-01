@@ -1,0 +1,41 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: API-GATEWAY
+
+
+    cloud:
+      gateway:
+        routes:
+          - id: STORE-IN-SERVICE
+            uri: lb://STORE-IN-SERVICE
+            predicates:
+              - Path=/storein/**
+
+          - id: STORE-OUT-SERVICE
+            uri: lb://STORE-OUT-SERVICE
+            predicates:
+              - Path=/storeout/**
+
+          - id: MANAGEMENT-SERVICE
+            uri: lb://MANAGEMENT-SERVICE
+            predicates:
+              - Path=/management/**
+
+          - id: SEALS-SERVICE
+            uri: lb://SEALS-SERVICE
+            predicates:
+              - Path=/seals/**
+
+#              - Path=/storeout/**,/staffs/**
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
