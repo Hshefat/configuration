@@ -1,6 +1,6 @@
-spring:
-  application:
-    name: CONFIG-GITHUB
+# spring:
+#   application:
+#     name: CONFIG-GITHUB
 eureka:
   instance:
     prefer-ip-address: true
